@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mr_Renzaku | تحميل أحدث التطبيقات والألعاب</title>
+
+<meta name="description" content="تحميل أحدث الألعاب والتطبيقات مجانا من متجر Mr_Renzaku">
+<meta name="keywords" content="تحميل ألعاب, تحميل تطبيقات, APK, متجر تطبيقات">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#0f0f0f,#1a1a2e);
+color:#fff;
+min-height:100vh;
+}
+
+/* ===== Header ===== */
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 8%;
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(10px);
+position:sticky;
+top:0;
+z-index:100;
+}
+
+.logo{
+font-size:26px;
+font-weight:bold;
+background:linear-gradient(45deg,#00f5ff,#ff00c8);
+-webkit-background-clip:text;
+color:transparent;
+}
+
+.search{
+padding:10px 15px;
+border-radius:25px;
+border:none;
+background:#222;
+color:white;
+outline:none;
+width:220px;
+}
+
+/* ===== Container ===== */
+.container{
+padding:40px 8%;
+}
+
+/* ===== Card Design ===== */
+.card{
+display:flex;
+align-items:center;
+gap:20px;
+background:linear-gradient(145deg,#1a1a2e,#16213e);
+border-radius:20px;
+padding:20px;
+margin-bottom:30px;
+transition:all 0.4s ease;
+box-shadow:0 10px 30px rgba(0,0,0,0.6);
+position:relative;
+overflow:hidden;
+}
+
+/* Light sweep effect */
+.card::before{
+content:"";
+position:absolute;
+top:-50%;
+left:-50%;
+width:200%;
+height:200%;
+background:linear-gradient(60deg,transparent,rgba(255,255,255,0.05),transparent);
+transform:rotate(25deg);
+transition:0.6s;
+}
+
+.card:hover::before{
+left:100%;
+}
+
+.card:hover{
+transform:translateY(-10px) scale(1.02);
+box-shadow:0 20px 40px rgba(0,0,0,0.8);
+}
+
+/* Image */
+.card img{
+width:120px;
+height:120px;
+border-radius:15px;
+object-fit:cover;
+background:#111;
+padding:10px;
+}
+
+/* Details */
+.card-details{
+flex:1;
+}
+
+.card-details h3{
+font-size:22px;
+margin-bottom:8px;
+}
+
+.card-details p{
+font-size:14px;
+opacity:0.8;
+margin-bottom:5px;
+}
+
+/* ===== Animated Button ===== */
+.card button{
+padding:12px 25px;
+border:none;
+border-radius:30px;
+background:linear-gradient(45deg,#00f5ff,#ff00c8);
+color:white;
+font-weight:bold;
+cursor:pointer;
+transition:0.3s;
+position:relative;
+overflow:hidden;
+}
+
+/* Glow Effect */
+.card button::after{
+content:"";
+position:absolute;
+top:0;
+left:-100%;
+width:100%;
+height:100%;
+background:linear-gradient(120deg,transparent,rgba(255,255,255,0.4),transparent);
+transition:0.5s;
+}
+
+.card button:hover::after{
+left:100%;
+}
+
+.card button:hover{
+transform:scale(1.05);
+box-shadow:0 0 20px rgba(255,0,200,0.7);
+}
+
+/* Footer */
+footer{
+text-align:center;
+padding:20px;
+margin-top:40px;
+background:rgba(255,255,255,0.05);
+}
+
+@media(max-width:768px){
+.card{
+flex-direction:column;
+text-align:center;
+}
+.card img{
+width:100px;
+height:100px;
+}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="logo">Mr_Renzaku</div>
+<input type="text" class="search" placeholder="ابحث عن تطبيق..." onkeyup="searchApp(this.value)">
+</header>
+
+<div class="container" id="appContainer"></div>
+
+<footer>
+© 2026 Mr_Renzaku - All Rights Reserved
+</footer>
+
+<script>
+const apps = [
+{
+name: "GameHub Lite",
+version: "v5.1.3",
+size: "45MB",
+logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRwfHKH3FD20uaxO3O9jklZHP62nc-0GNwH4JtR1NHh3c_97SAfF7VPNc&s=10",
+download: "https://download2261.mediafire.com/3gjibjryofjgQdAqs64tG0ZbznqnVJYHdp3Vrbyu3Hr08KINZHjcUsl7YYBKKWG2tZAWBwKIRtU1KENNb0ukOUonqOXl38AcMuxYm29MEM8NTghSNTgISwkRL4znAeLpaQwiwwQBXgXHREpBjH0UyoKDVodex41cGDAJY6VMUu7n0w/4i99qxjayl3lndo/GameHub-Lite-v5.1.3-apkvision.apk"
+}
+];
+  apps.push({
+  name: "Yacine TV مهكر بدون مشغل",
+  version: "v1.2",
+  size: "9.83",
+  logo: "https://klekee.com/wp-content/uploads/2024/02/IMG_%D9%A2%D9%A0%D9%A2%D9%A4%D9%A0%D9%A2%D9%A2%D9%A3_%D9%A2%D9%A0%D9%A3%D9%A7%D9%A5%D9%A8.jpg",
+  download: "https://download2389.mediafire.com/3yhmj30wh7jgtQKnqoPyopqv-ggdJ2SybMZMBf3soNTH2-scbshw77AYoi35rmoHFGUlNQEn_liMcsnMozOCDs7TwNUtlyXaF30kcjeehdaTeDVbbL_8K4ZRYR8eh3NQIbWxXyTqcIlXgmNUW3KTzdKPLd47xKeAhIjgHldo4NU/mqpdj2kacuqrrny/Yacine+TV+New-2025.apk"
+});
+apps.push({
+  name: "Boost DevX لتحسين أداء الهاتف",
+  version: "2.0",
+  size: "2.34",
+  logo:"https://media.istockphoto.com/id/1442450033/vector/rocket-logo-vector-design-illustration.jpg?s=612x612&w=0&k=20&c=rwM6Ct1C1dFkbz0Dg3mNPpxFwcP04_i_fJ1SPPHK9MU=",
+  download: "https://download2339.mediafire.com/j3f87kgehl8gnyzteTtT0AslRL043YN6MWH8L-rnm8N1YAQgZ6ttqPbfbYZSTIOaZTn6TWq5U9IF2uVoqYIBiivYVoo1bo5Kd5MfL-162mnKW5C18-pucw6KguNz7O4DPXhX8F12-qwLuP1E2O7IhqzWp3w9FlAaMYub9YDiGhg/ehksxg061kb5ias/BoostDevX-2.0.apk"
+});
+function renderApps(list){
+const container=document.getElementById("appContainer");
+container.innerHTML="";
+list.forEach(app=>{
+container.innerHTML+=`
+<div class="card">
+<img src="${app.logo}" loading="lazy">
+<div class="card-details">
+<h3>${app.name}</h3>
+<p>الإصدار: ${app.version}</p>
+<p>الحجم: ${app.size}</p>
+<button onclick="downloadApp('${app.download}','${app.name}')">تحميل</button>
+</div>
+</div>
+`;
+});
+}
+
+renderApps(apps);
+
+function downloadApp(link,name){
+const a=document.createElement("a");
+a.href=link;
+a.download=name+".apk";
+document.body.appendChild(a);
+a.click();
+document.body.removeChild(a);
+}
+
+function searchApp(value){
+let filtered=apps.filter(app=>
+app.name.toLowerCase().includes(value.toLowerCase())
+);
+renderApps(filtered);
+}
+</script>
+
+</body>
+  </html>
