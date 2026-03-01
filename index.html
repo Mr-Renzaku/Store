@@ -1,255 +1,472 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mr_Renzaku | تحميل أحدث التطبيقات والألعاب</title>
-
-<meta name="description" content="تحميل أحدث الألعاب والتطبيقات مجانا من متجر Mr_Renzaku">
-<meta name="keywords" content="تحميل ألعاب, تحميل تطبيقات, APK, متجر تطبيقات">
+<title>Mr_Renzaku</title>
 
 <style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Segoe UI',sans-serif;
+
+/* ================= الخلفيات المحسنة ================= */
+
+:root{
+  --bg-dark:
+    radial-gradient(circle at 50% -20%, rgba(255,215,0,0.15), transparent 60%),
+    linear-gradient(160deg,#0f2027,#1b2a38,#000814);
+
+  --bg-light:
+    radial-gradient(circle at top, rgba(255,200,0,0.15), transparent 55%),
+    linear-gradient(160deg,#fffdf7,#ffeacc);
+
+  --glass-dark: rgba(255,255,255,0.06);
+  --glass-light: rgba(255,255,255,0.85);
+  --text-dark:#ffffff;
+  --text-light:#1f1f1f;
+  --accent:linear-gradient(45deg,#ffd700,#ffb300);
 }
 
 body{
-background:linear-gradient(135deg,#0f0f0f,#1a1a2e);
-color:#fff;
-min-height:100vh;
+  margin:0;
+  font-family:'Segoe UI',sans-serif;
+  background:var(--bg-dark);
+  color:var(--text-dark);
+  transition:.4s ease;
 }
 
-/* ===== Header ===== */
+body.light{
+  background:var(--bg-light);
+  color:var(--text-light);
+}
+
+/* ================= الفوانيس ================= */
+
+.lantern{
+  position:fixed;
+  top:0;
+  width:45px;
+  height:65px;
+  background:var(--accent);
+  border-radius:12px;
+  box-shadow:0 0 35px rgba(255,200,0,.8);
+  animation:swing 3s infinite alternate ease-in-out;
+  z-index:0;
+}
+
+.l1{left:15%}
+.l2{left:45%;animation-delay:1s}
+.l3{left:75%;animation-delay:2s}
+
+@keyframes swing{
+  from{transform:rotate(-6deg)}
+  to{transform:rotate(6deg)}
+}
+
+/* ================= الهيدر ================= */
+
 header{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:20px 8%;
-background:rgba(255,255,255,0.05);
-backdrop-filter:blur(10px);
-position:sticky;
-top:0;
-z-index:100;
+  padding:20px;
+  text-align:center;
+  font-size:22px;
+  font-weight:bold;
+  background:rgba(255,255,255,.05);
+  backdrop-filter:blur(20px);
+  position:relative;
+  z-index:1;
 }
 
-.logo{
-font-size:26px;
-font-weight:bold;
-background:linear-gradient(45deg,#00f5ff,#ff00c8);
--webkit-background-clip:text;
-color:transparent;
-}
+/* ================= الكروت ================= */
 
-.search{
-padding:10px 15px;
-border-radius:25px;
-border:none;
-background:#222;
-color:white;
-outline:none;
-width:220px;
-}
-
-/* ===== Container ===== */
 .container{
-padding:40px 8%;
+  padding:20px;
+  position:relative;
+  z-index:1;
 }
 
-/* ===== Card Design ===== */
 .card{
-display:flex;
-align-items:center;
-gap:20px;
-background:linear-gradient(145deg,#1a1a2e,#16213e);
-border-radius:20px;
-padding:20px;
-margin-bottom:30px;
-transition:all 0.4s ease;
-box-shadow:0 10px 30px rgba(0,0,0,0.6);
-position:relative;
-overflow:hidden;
+  display:flex;
+  align-items:center;
+  gap:15px;
+  padding:18px;
+  margin-bottom:20px;
+  border-radius:25px;
+  background:var(--glass-dark);
+  backdrop-filter:blur(25px);
+  border:1px solid rgba(255,255,255,.15);
+  cursor:pointer;
+  transition:.3s;
 }
 
-/* Light sweep effect */
-.card::before{
-content:"";
-position:absolute;
-top:-50%;
-left:-50%;
-width:200%;
-height:200%;
-background:linear-gradient(60deg,transparent,rgba(255,255,255,0.05),transparent);
-transform:rotate(25deg);
-transition:0.6s;
-}
-
-.card:hover::before{
-left:100%;
+body.light .card{
+  background:var(--glass-light);
 }
 
 .card:hover{
-transform:translateY(-10px) scale(1.02);
-box-shadow:0 20px 40px rgba(0,0,0,0.8);
+  transform:translateY(-5px);
 }
 
-/* Image */
 .card img{
-width:120px;
-height:120px;
-border-radius:15px;
-object-fit:cover;
-background:#111;
-padding:10px;
+  width:70px;
+  height:70px;
+  border-radius:20px;
 }
 
-/* Details */
-.card-details{
-flex:1;
+/* ================= صفحة التفاصيل ================= */
+
+.details-page{
+  display:none;
+  padding:20px;
+  position:relative;
+  z-index:1;
 }
 
-.card-details h3{
-font-size:22px;
-margin-bottom:8px;
+.glass{
+  max-width:500px;
+  margin:40px auto;
+  padding:30px;
+  border-radius:35px;
+  background:var(--glass-dark);
+  backdrop-filter:blur(30px);
+  border:1px solid rgba(255,255,255,.2);
+  text-align:center;
 }
 
-.card-details p{
-font-size:14px;
-opacity:0.8;
-margin-bottom:5px;
+body.light .glass{
+  background:var(--glass-light);
 }
 
-/* ===== Animated Button ===== */
-.card button{
-padding:12px 25px;
-border:none;
-border-radius:30px;
-background:linear-gradient(45deg,#00f5ff,#ff00c8);
-color:white;
-font-weight:bold;
-cursor:pointer;
-transition:0.3s;
-position:relative;
-overflow:hidden;
+.install-btn{
+  display:inline-block;
+  margin-top:20px;
+  padding:14px 35px;
+  border-radius:50px;
+  background:var(--accent);
+  color:black;
+  font-weight:bold;
+  text-decoration:none;
+  box-shadow:0 8px 25px rgba(255,215,0,.4);
 }
 
-/* Glow Effect */
-.card button::after{
-content:"";
-position:absolute;
-top:0;
-left:-100%;
-width:100%;
-height:100%;
-background:linear-gradient(120deg,transparent,rgba(255,255,255,0.4),transparent);
-transition:0.5s;
+/* ================= زر الإعدادات ================= */
+
+.settings-wrapper{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  padding:12px 15px;
+  border-radius:20px;
+  background:rgba(255,255,255,.15);
+  backdrop-filter:blur(20px);
+  border:1px solid rgba(255,255,255,.3);
+  cursor:pointer;
+  z-index:2;
 }
 
-.card button:hover::after{
-left:100%;
+/* ================= نافذة الإعدادات ================= */
+
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.6);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:3;
 }
 
-.card button:hover{
-transform:scale(1.05);
-box-shadow:0 0 20px rgba(255,0,200,0.7);
+.modal-content{
+  width:340px;
+  padding:25px;
+  border-radius:25px;
+  background:var(--glass-dark);
+  backdrop-filter:blur(30px);
+  position:relative;
 }
 
-/* Footer */
-footer{
-text-align:center;
-padding:20px;
-margin-top:40px;
-background:rgba(255,255,255,0.05);
+body.light .modal-content{
+  background:var(--glass-light);
 }
 
-@media(max-width:768px){
-.card{
-flex-direction:column;
-text-align:center;
+.close-btn{
+  position:absolute;
+  top:10px;
+  left:15px;
+  cursor:pointer;
+  font-weight:bold;
+  font-size:18px;
 }
-.card img{
-width:100px;
-height:100px;
+
+.setting-item{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:14px 0;
+  border-bottom:1px solid rgba(255,255,255,.1);
 }
+
+/* ================= Toggle ================= */
+
+.toggle{
+  width:45px;
+  height:24px;
+  background:#777;
+  border-radius:20px;
+  position:relative;
+  cursor:pointer;
+  transition:.3s;
 }
+
+.toggle::before{
+  content:"";
+  position:absolute;
+  width:18px;
+  height:18px;
+  background:#fff;
+  border-radius:50%;
+  top:3px;
+  right:4px;
+  transition:.3s;
+}
+
+.toggle.active{
+  background:var(--accent);
+}
+
+.toggle.active::before{
+  transform:translateX(-20px);
+}
+
+/* ================= زر التحديث ================= */
+
+.refresh-btn{
+  padding:8px 14px;
+  border-radius:10px;
+  border:none;
+  background:var(--accent);
+  cursor:pointer;
+  font-weight:bold;
+}
+
+select{
+  padding:6px;
+  border-radius:8px;
+}
+
 </style>
 </head>
 
 <body>
 
-<header>
-<div class="logo">Mr_Renzaku</div>
-<input type="text" class="search" placeholder="ابحث عن تطبيق..." onkeyup="searchApp(this.value)">
-</header>
+<div class="lantern l1"></div>
+<div class="lantern l2"></div>
+<div class="lantern l3"></div>
 
-<div class="container" id="appContainer"></div>
+<header id="title">🌙 Mr_Renzaku | رمضان كريم</header>
 
-<footer>
-© 2026 Mr_Renzaku - All Rights Reserved
-</footer>
+<div class="container" id="homePage"></div>
+<div class="details-page" id="detailsPage"></div>
+
+<div class="settings-wrapper" onclick="openSettings()">⚙️</div>
+
+<div class="modal" id="settingsModal">
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeSettings()">✖</span>
+    <h3 id="settingsTitle">الإعدادات</h3>
+
+    <div class="setting-item">
+      <span id="modeText">التبديل بين الأوضاع</span>
+      <div class="toggle" id="darkToggle" onclick="toggleDark()"></div>
+    </div>
+
+    <div class="setting-item">
+      <span id="effectsText">المؤثرات الرمضانية</span>
+      <div class="toggle" id="effectsToggle" onclick="toggleEffects()"></div>
+    </div>
+
+    <div class="setting-item">
+      <span id="langText">اللغة</span>
+      <select onchange="changeLang(this.value)" id="languageSelect">
+        <option value="ar">العربية</option>
+        <option value="en">English</option>
+      </select>
+    </div>
+
+    <div class="setting-item">
+      <span id="refreshText">تحديث الصفحة</span>
+      <button class="refresh-btn" onclick="refreshPage()">تحديث</button>
+    </div>
+
+  </div>
+</div>
 
 <script>
+
+/* ================= التطبيقات ================= */
+
 const apps = [
-{
-name: "GameHub Lite",
-version: "v5.1.3",
-size: "45MB",
-logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRwfHKH3FD20uaxO3O9jklZHP62nc-0GNwH4JtR1NHh3c_97SAfF7VPNc&s=10",
-download: "https://download2261.mediafire.com/3gjibjryofjgQdAqs64tG0ZbznqnVJYHdp3Vrbyu3Hr08KINZHjcUsl7YYBKKWG2tZAWBwKIRtU1KENNb0ukOUonqOXl38AcMuxYm29MEM8NTghSNTgISwkRL4znAeLpaQwiwwQBXgXHREpBjH0UyoKDVodex41cGDAJY6VMUu7n0w/4i99qxjayl3lndo/GameHub-Lite-v5.1.3-apkvision.apk"
-}
+  {
+    name: "GameHub Lite",
+    publisher: "Mr_Renzaku Store",
+    version: "v5.1.3",
+    category: "PS5 game emulator",
+    logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRwfHKH3FD20uaxO3O9jklZHP62nc-0GNwH4JtR1NHh3c_97SAfF7VPNc&s=10",
+    download: "#"
+  }
+  ,{
+    name: "Yacine TV",
+    publisher: "لمشاهدة جميع مباريات كرة القدم",
+    version: "2026",
+    category: "TV",
+    logo: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhacjPqIoS92fxNszDp_QIZgJ2_wksscHZL4X9A_znWHAOKk6y5_3xExmZvOcCK9oFFaZjoJj-8cSFtMyu0wrUK3lgEal-5VCidjOqyX87Oclh7n4JPQtc6RTbys136QsllBPnoaK-JRZkK_6kT-MIJM9CCuqh3neHHGyxiIhoA8kBdPl2CowwEAlrDZQB1/w640-h360/%D8%AA%D8%AD%D9%85%D9%8A%D9%84-%D9%8A%D8%A7%D8%B3%D9%8A%D9%86-%D8%AA%D9%8A%D9%81%D9%8A-Yacine-TV-APK-1%20(1).jpg",
+    download: "https://download2389.mediafire.com/zqdhnjadogbgcجههa_AebvOLi2rZotBFgd4KEfJsaq4ai9Ukoa0yXLayPvD0vkGH38HZC6WI78niT4G8omSW1xVu5ZAa3hwqqwnvySAO-Cw2lumhCtqae4rLCV_RtTSEnqowl6yIq3gi1kty0dd7838qcNo4Bb9opMn1Rj8xTHCrwrk/mqpdj2kacuqrrny/Yacine+TV+New-2025.apk"
+  }
+,{
+    name: "Boost DevX",
+    publisher: "لتحسين أداء الالعاب علي هاتفك",
+    version: "2.0",
+    category: "App",
+    logo: "https://media.istockphoto.com/id/876037616/vector/rocket-launch-vector-illustration-isolated-on-white.jpg?s=612x612&w=0&k=20&c=BnOXPbM2RyZBSLKLiCJaY_9mkK_1VQ2GuCP-HFFbAX4=",
+    download: "https://download2339.mediafire.com/j3f87kgehl8gnyzteTtT0AslRL043YN6MWH8L-rnm8N1YAQgZ6ttqPbfbYZSTIOaZTn6TWq5U9IF2uVoqYIBiivYVoo1bo5Kd5MfL-162mnKW5C18-pucw6KguNz7O4DPXhX8F12-qwLuP1E2O7IhqzWp3w9FlAaMYub9YDiGhg/ehksxg061kb5ias/BoostDevX-2.0.apk"
+  }
 ];
-  apps.push({
-  name: "Yacine TV مهكر بدون مشغل",
-  version: "v1.2",
-  size: "9.83",
-  logo: "https://klekee.com/wp-content/uploads/2024/02/IMG_%D9%A2%D9%A0%D9%A2%D9%A4%D9%A0%D9%A2%D9%A2%D9%A3_%D9%A2%D9%A0%D9%A3%D9%A7%D9%A5%D9%A8.jpg",
-  download: "https://download2389.mediafire.com/3yhmj30wh7jgtQKnqoPyopqv-ggdJ2SybMZMBf3soNTH2-scbshw77AYoi35rmoHFGUlNQEn_liMcsnMozOCDs7TwNUtlyXaF30kcjeehdaTeDVbbL_8K4ZRYR8eh3NQIbWxXyTqcIlXgmNUW3KTzdKPLd47xKeAhIjgHldo4NU/mqpdj2kacuqrrny/Yacine+TV+New-2025.apk"
-});
-apps.push({
-  name: "Boost DevX لتحسين أداء الهاتف",
-  version: "2.0",
-  size: "2.34",
-  logo:"https://media.istockphoto.com/id/1442450033/vector/rocket-logo-vector-design-illustration.jpg?s=612x612&w=0&k=20&c=rwM6Ct1C1dFkbz0Dg3mNPpxFwcP04_i_fJ1SPPHK9MU=",
-  download: "https://download2339.mediafire.com/j3f87kgehl8gnyzteTtT0AslRL043YN6MWH8L-rnm8N1YAQgZ6ttqPbfbYZSTIOaZTn6TWq5U9IF2uVoqYIBiivYVoo1bo5Kd5MfL-162mnKW5C18-pucw6KguNz7O4DPXhX8F12-qwLuP1E2O7IhqzWp3w9FlAaMYub9YDiGhg/ehksxg061kb5ias/BoostDevX-2.0.apk"
-});
-function renderApps(list){
-const container=document.getElementById("appContainer");
-container.innerHTML="";
-list.forEach(app=>{
-container.innerHTML+=`
-<div class="card">
-<img src="${app.logo}" loading="lazy">
-<div class="card-details">
-<h3>${app.name}</h3>
-<p>الإصدار: ${app.version}</p>
-<p>الحجم: ${app.size}</p>
-<button onclick="downloadApp('${app.download}','${app.name}')">تحميل</button>
-</div>
-</div>
-`;
-});
+/* ================= عرض التطبيقات ================= */
+
+function renderHome(){
+  const container = document.getElementById("homePage");
+  container.innerHTML = "";
+
+  apps.forEach((app,index)=>{
+    container.innerHTML += `
+      <div class="card" onclick="openDetails(${index})">
+        <img src="${app.logo}">
+        <div>
+          <h3>${app.name}</h3>
+          <p>${app.publisher}</p>
+          <small>${app.category} | ${app.version}</small>
+        </div>
+      </div>
+    `;
+  });
 }
 
-renderApps(apps);
+/* ================= التفاصيل ================= */
 
-function downloadApp(link,name){
-const a=document.createElement("a");
-a.href=link;
-a.download=name+".apk";
-document.body.appendChild(a);
-a.click();
-document.body.removeChild(a);
+function openDetails(index){
+  const app = apps[index];
+  document.getElementById("homePage").style.display="none";
+  const details = document.getElementById("detailsPage");
+  details.style.display="block";
+
+  details.innerHTML = `
+    <div class="glass">
+      <img src="${app.logo}" width="100" style="border-radius:20px;">
+      <h2>${app.name}</h2>
+      <p>${app.publisher}</p>
+      <p>${app.category} | ${app.version}</p>
+      <a href="${app.download}" class="install-btn">
+        ${currentLang==="ar"?"تثبيت":"Install"}
+      </a>
+      <p style="margin-top:15px;cursor:pointer" onclick="goBack()">
+        ${currentLang==="ar"?"رجوع":"Back"}
+      </p>
+    </div>
+  `;
 }
 
-function searchApp(value){
-let filtered=apps.filter(app=>
-app.name.toLowerCase().includes(value.toLowerCase())
-);
-renderApps(filtered);
+function goBack(){
+  document.getElementById("detailsPage").style.display="none";
+  document.getElementById("homePage").style.display="block";
 }
+
+/* ================= الإعدادات ================= */
+
+function openSettings(){
+  document.getElementById("settingsModal").style.display="flex";
+}
+
+function closeSettings(){
+  document.getElementById("settingsModal").style.display="none";
+}
+
+function toggleDark(){
+  document.body.classList.toggle("light");
+  document.getElementById("darkToggle").classList.toggle("active");
+  localStorage.setItem("mode",document.body.classList.contains("light")?"light":"dark");
+}
+
+function toggleEffects(){
+  const toggle=document.getElementById("effectsToggle");
+  toggle.classList.toggle("active");
+  const lanterns=document.querySelectorAll(".lantern");
+
+  if(toggle.classList.contains("active")){
+    lanterns.forEach(l=>l.style.display="block");
+    localStorage.setItem("effects","on");
+  }else{
+    lanterns.forEach(l=>l.style.display="none");
+    localStorage.setItem("effects","off");
+  }
+}
+
+function refreshPage(){
+  location.reload();
+}
+
+/* ================= اللغة ================= */
+
+let currentLang="ar";
+
+function changeLang(lang){
+  currentLang=lang;
+  localStorage.setItem("lang",lang);
+
+  if(lang==="en"){
+    document.documentElement.lang="en";
+    document.documentElement.dir="ltr";
+    document.getElementById("settingsTitle").innerText="Settings";
+    document.getElementById("modeText").innerText="Toggle Mode";
+    document.getElementById("effectsText").innerText="Ramadan Effects";
+    document.getElementById("langText").innerText="Language";
+    document.getElementById("refreshText").innerText="Refresh Page";
+    document.querySelector(".refresh-btn").innerText="Refresh";
+    document.getElementById("title").innerText="🌙 Mr_Renzaku | Ramadan Kareem";
+  }else{
+    document.documentElement.lang="ar";
+    document.documentElement.dir="rtl";
+    document.getElementById("settingsTitle").innerText="الإعدادات";
+    document.getElementById("modeText").innerText="التبديل بين الأوضاع";
+    document.getElementById("effectsText").innerText="المؤثرات الرمضانية";
+    document.getElementById("langText").innerText="اللغة";
+    document.getElementById("refreshText").innerText="تحديث الصفحة";
+    document.querySelector(".refresh-btn").innerText="تحديث";
+    document.getElementById("title").innerText="🌙 Mr_Renzaku | رمضان كريم";
+  }
+}
+
+/* ================= تحميل الإعدادات ================= */
+
+window.onload=function(){
+
+  renderHome();
+
+  if(localStorage.getItem("mode")==="light"){
+    document.body.classList.add("light");
+    document.getElementById("darkToggle").classList.add("active");
+  }
+
+  if(localStorage.getItem("effects")==="on"){
+    document.getElementById("effectsToggle").classList.add("active");
+  }else{
+    document.querySelectorAll(".lantern").forEach(l=>l.style.display="none");
+  }
+
+  if(localStorage.getItem("lang")){
+    changeLang(localStorage.getItem("lang"));
+    document.getElementById("languageSelect").value=localStorage.getItem("lang");
+  }
+
+};
+
 </script>
 
 </body>
-  </html>
+</html>
